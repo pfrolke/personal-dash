@@ -1,31 +1,30 @@
-// https://stackoverflow.com/questions/901115/how-can-i-get-query-string-values-in-javascript
-function getParameterByName(name, url = window.location.href) {
-  name = name.replace(/[\[\]]/g, "\\$&");
-  var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
-    results = regex.exec(url);
-  if (!results) return null;
-  if (!results[2]) return "";
-  return decodeURIComponent(results[2].replace(/\+/g, " "));
+function getParameterByName(variable) {
+	var query = window.location.search.substring(1);
+  var vars = query.split('&');
+  for (var i = 0; i < vars.length; i++) {
+      var pair = vars[i].split('=');
+      if (decodeURIComponent(pair[0]) == variable) {
+          return decodeURIComponent(pair[1]);
+      }
+  }
 }
 
 window.addEventListener("load", function () {
   /* weather update */
   var appid = getParameterByName("appid");
-  if (appid) {
-    var oReq = new XMLHttpRequest();
-    oReq.addEventListener("load", function () {
-      var weatherData = JSON.parse(this.responseText);
-      var weatherTemp = document.getElementById("weather-temp");
-      var temp = Math.round(weatherData.main.temp);
-      weatherTemp.innerHTML = temp;
-    });
-    oReq.open(
-      "GET",
-      "https://api.openweathermap.org/data/2.5/weather?id=2757345&units=metric&appid=" +
-        appid
-    );
-    oReq.send();
-  }
+  var oReq = new XMLHttpRequest();
+	oReq.addEventListener("load", function () {
+		var weatherData = JSON.parse(this.responseText);
+		var weatherTemp = document.getElementById("weather-temp");
+		var temp = Math.round(weatherData.main.temp);
+		weatherTemp.innerHTML = temp;
+	});
+	oReq.open(
+		"GET",
+		"https://api.openweathermap.org/data/2.5/weather?id=2757345&units=metric&appid=" +
+			appid
+	);
+	oReq.send();
 
   /* greeting update */
   var greeting = document.getElementById("greeting");
