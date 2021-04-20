@@ -1,0 +1,109 @@
+@import url("https://fonts.googleapis.com/css?family=Roboto+Slab:400,700");
+
+* {
+  margin: 0;
+  padding: 0;
+  border: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  background: white;
+  color: black;
+
+  font-family: "Roboto Slab";
+}
+
+.container {
+  box-sizing: border-box;
+}
+
+.text {
+  font-size: 100px;
+  font-weight: 500;
+  line-height: 96px;
+}
+
+.sub {
+  font-size: 48px;
+  font-weight: 700;
+}
+
+.weather {
+  position: absolute;
+  text-align: center;
+  top: 5px;
+  left: 5px;
+}
+
+.weather > .text:after {
+  content: "°";
+}
+
+.header {
+  position: absolute;
+  top: 5px;
+  left: 50%;
+  transform: translate(-50%, 0);
+  text-align: center;
+}
+
+.header > .text:after {
+  content: "";
+  display: block;
+  height: 1px;
+  background: darkgray;
+  width: 80%;
+  margin: auto;
+  margin: 25px auto;
+}
+
+.header > .sub {
+  font-weight: 500;
+}
+
+.todos {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  text-align: center;
+  max-width: 400px;
+}
+
+.todos > .text:after {
+  content: "";
+  display: block;
+  height: 1px;
+  background: darkgray;
+  width: 80%;
+  margin: auto;
+  margin: 25px auto;
+}
+
+.todos ul {
+  list-style: none;
+  text-align: left;
+}
+
+.todos li:before {
+  content: "\25A1";
+  margin-left: -20px;
+  margin-right: 10px;
+}
+
+.todos li {
+  font-size: 48px;
+  font-weight: 500;
+}
+
+.weekplanner {
+  position: absolute;
+  top: 50%;
+  left: 20px;
+}
