@@ -9,22 +9,24 @@ function getParameterByName(name, url = window.location.href) {
 }
 
 window.addEventListener("load", function () {
-  var appid = getParameterByName("appid");
-
+  
   /* weather update */
-  var oReq = new XMLHttpRequest();
-  oReq.addEventListener("load", function () {
-    var weatherData = JSON.parse(this.responseText);
-    var weatherTemp = document.getElementById("weather-temp");
-    var temp = Math.round(weatherData.main.temp);
-    weatherTemp.innerHTML = temp;
-  });
-  oReq.open(
-    "GET",
-    "https://api.openweathermap.org/data/2.5/weather?id=2757345&units=metric&appid=" +
-      appid
-  );
-  oReq.send();
+	var appid = getParameterByName("appid");
+		if (appid) {
+		var oReq = new XMLHttpRequest();
+		oReq.addEventListener("load", function () {
+			var weatherData = JSON.parse(this.responseText);
+			var weatherTemp = document.getElementById("weather-temp");
+			var temp = Math.round(weatherData.main.temp);
+			weatherTemp.innerHTML = temp;
+		});
+		oReq.open(
+			"GET",
+			"https://api.openweathermap.org/data/2.5/weather?id=2757345&units=metric&appid=" +
+				appid
+		);
+		oReq.send();
+	}
 
   /* greeting update */
   var greeting = document.getElementById("greeting");

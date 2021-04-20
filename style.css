@@ -22,6 +22,9 @@ body {
 
 .container {
   box-sizing: border-box;
+  width: 1872px;
+  height: 1404px;
+  -webkit-transform: rotate(-90deg) translateX(-200px) translateY(-240px);
 }
 
 .text {
