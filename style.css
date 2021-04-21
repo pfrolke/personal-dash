@@ -41,7 +41,7 @@ body {
   position: absolute;
   text-align: center;
   top: 10px;
-  left: 5px;
+  left: 10px;
 }
 
 .weather > .text:after {
@@ -51,7 +51,7 @@ body {
 .header {
   position: absolute;
   top: 10px;
-  left: 25vw;
+  left: 22vw;
   text-align: center;
 }
 
