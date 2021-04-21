@@ -131,10 +131,13 @@ function updateTodos() {
   oReq.addEventListener("load", function () {
     var res = JSON.parse(this.responseText);
     var todosList = document.getElementById("todos-list");
+    var todosListHTML = "";
 
     for (var i = 0; i < res.length; i++) {
-      todosList.innerHTML += "<li>" + res[i].name + "</li>";
+      todosListHTML += "<li>" + res[i].name + "</li>";
     }
+
+    todosList.innerHTML = todosListHTML;
   });
 
   oReq.open(
