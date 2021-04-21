@@ -46,7 +46,7 @@ function updateGreeting() {
   if (date.getHours() > 12) {
     greet = "Hallo";
   }
-  if (date.getHours() > 22 || date.getHours < 5) {
+  if (date.getHours() > 22 || date.getHours() < 5) {
     greet = "Truste";
   }
 
