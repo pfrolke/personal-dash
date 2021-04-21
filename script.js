@@ -10,6 +10,7 @@ function getParameterByName(variable) {
 }
 
 window.addEventListener("load", function () {
+	update();
   setInterval(update, 120000);
 });
 
