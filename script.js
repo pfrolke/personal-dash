@@ -10,6 +10,10 @@ function getParameterByName(variable) {
 }
 
 window.addEventListener("load", function () {
+	setTimeout(function() {
+		
+	}, 120000);
+
   /* weather update */
   var appid = getParameterByName("appid");
   var oReq = new XMLHttpRequest();
@@ -38,7 +42,7 @@ window.addEventListener("load", function () {
     greet = "Truste";
   }
 
-  greeting.innerHTML = greet;
+  greeting.innerHTML = greet + " Paul";
 
   /* datetime update */
   var timedate = document.getElementById("timedate");
@@ -82,7 +86,7 @@ window.addEventListener("load", function () {
   var timeText = minText[minTextIndex] + " " + hourText[hourTextIndex];
 
   if (minTextIndex == 0) {
-    timeText = timeText.charAt(0).toUpperCase() + timeText.slice(1) + "uur";
+    timeText = timeText.charAt(0).toUpperCase() + timeText.slice(1) + " uur";
   }
 
   var monthIndex = date.getMonth();
