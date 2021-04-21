@@ -55,6 +55,7 @@ function updateGreeting() {
 
 function updateTimeDate() {
   var timedate = document.getElementById("timedate");
+  var date = new Date();
 
   var minTextIndex = Math.round((date.getMinutes() / 60) * 12) % 12;
   var minText = [
