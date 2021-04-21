@@ -54,7 +54,8 @@ function updateGreeting() {
 }
 
 function updateTimeDate() {
-  var timedate = document.getElementById("timedate");
+  var timeHTML = document.getElementById("time-text");
+  var dateHTML = document.getElementById("date-text");
   var date = new Date();
 
   var minTextIndex = Math.round((date.getMinutes() / 60) * 12) % 12;
@@ -119,9 +120,8 @@ function updateTimeDate() {
 
   var dayText = date.getDate();
 
-  var datetimeText = timeText + ", " + dayText + " " + monthText;
-
-  timedate.innerHTML = datetimeText;
+  timeHTML.innerHTML = timeText;
+  dateHTML.innerHTML = dayText + " " + monthText;
 }
 
 function updateTodos() {
