@@ -15,7 +15,12 @@ window.addEventListener("load", function () {
 });
 
 function update() {
-	/* weather update */
+	updateWeather();
+	updateGreeting();
+	updateTimeDate();
+}
+
+function updateWeather() {
 	var appid = getParameterByName("appid");
 	var oReq = new XMLHttpRequest();
 	oReq.addEventListener("load", function () {
@@ -30,8 +35,9 @@ function update() {
 			appid
 	);
 	oReq.send();
+}
 
-	/* greeting update */
+function updateGreeting() {
 	var greeting = document.getElementById("greeting");
 	var date = new Date();
 
@@ -44,8 +50,9 @@ function update() {
 	}
 
 	greeting.innerHTML = greet + " Paul";
+}
 
-	/* datetime update */
+function updateTimeDate() {
 	var timedate = document.getElementById("timedate");
 
 	var minTextIndex = Math.round((date.getMinutes() / 60) * 12) % 12;
