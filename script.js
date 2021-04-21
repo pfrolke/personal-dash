@@ -11,7 +11,7 @@ function getParameterByName(variable) {
 
 window.addEventListener("load", function () {
 	setTimeout(function() {
-		
+
 	}, 120000);
 
   /* weather update */
@@ -83,11 +83,13 @@ window.addEventListener("load", function () {
     "elf",
   ];
 
-  var timeText = minText[minTextIndex] + " " + hourText[hourTextIndex];
+  var timeText;
 
   if (minTextIndex == 0) {
     timeText = timeText.charAt(0).toUpperCase() + timeText.slice(1) + " uur";
-  }
+  } else {
+		timeText = minText[minTextIndex] + " " + hourText[hourTextIndex]
+	}
 
   var monthIndex = date.getMonth();
   var monthText = [
