@@ -44,6 +44,15 @@ body {
   left: 10px;
 }
 
+.weather > img,
+.weather > .text {
+  display: inline-block;
+}
+
+.weather > img {
+  filter: brightness(0.7);
+}
+
 .weather > .text:after {
   content: "°";
 }

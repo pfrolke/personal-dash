@@ -28,9 +28,14 @@ function updateWeather() {
     var weatherData = JSON.parse(this.responseText);
     var weatherTemp = document.getElementById("weather-temp");
     var weatherText = document.getElementById("weather-text");
+    var weatherImg = document.getElementById("weather-img");
     var temp = Math.round(weatherData.main.temp);
     weatherTemp.innerHTML = temp;
     weatherText.innerHTML = weatherData.weather[0].description;
+    weatherImg.src =
+      "https://openweathermap.org/img/wn/" +
+      weatherData.weather[0].icon +
+      ".png";
   });
   oReq.open(
     "GET",
