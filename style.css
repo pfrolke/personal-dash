@@ -50,7 +50,9 @@ body {
 }
 
 .weather > img {
-  filter: brightness(0.7);
+  -webkit-filter: brightness(75%);
+  filter: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' ><filter id='bright75'><feComponentTransfer><feFuncR type='linear' slope='0.75'/><feFuncG type='linear' slope='0.75' /><feFuncB type='linear' slope='0.75' /></feComponentTransfer></filter></svg>#bright75");
+  filter: brightness(75%);
 }
 
 .weather > .text:after {
