@@ -27,12 +27,14 @@ function updateWeather() {
   oReq.addEventListener("load", function () {
     var weatherData = JSON.parse(this.responseText);
     var weatherTemp = document.getElementById("weather-temp");
+    var weatherText = document.getElementById("weather-text");
     var temp = Math.round(weatherData.main.temp);
     weatherTemp.innerHTML = temp;
+    weatherText.innerHTML = weatherData.weather[0].description;
   });
   oReq.open(
     "GET",
-    "https://api.openweathermap.org/data/2.5/weather?id=2757345&units=metric&appid=" +
+    "https://api.openweathermap.org/data/2.5/weather?id=2757345&lang=nl&units=metric&appid=" +
       appid
   );
   oReq.send();

@@ -48,6 +48,10 @@ body {
   content: "°";
 }
 
+.weather > .sub {
+  text-transform: capitalize;
+}
+
 .header {
   position: absolute;
   top: 10px;
