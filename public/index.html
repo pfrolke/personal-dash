@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Personal Dashboard</title>
+
+    <meta charset="UTF-8" />
+    <!-- <meta http-equiv="refresh" content="20" /> -->
+
+    <meta
+      name="viewport"
+      content="width=user-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/style.css" />
+
+    <script type="text/javascript" src="/javascripts/script.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <div class="weather">
+        <img id="weather-img"></img>
+        <div id="weather-temp" class="text">n/a</div>
+        <div id="weather-text" class="sub">n/a</div>
+      </div>
+
+      <div class="header">
+        <div id="greeting" class="text">...</div>
+        <div id="time-text" class="sub">...</div>
+        <div id="date-text" class="sub">...</div>
+      </div>
+
+      <div class="todos">
+        <div class="text">Todos</div>
+        <ul id="todos-list"></ul>
+      </div>
+
+      <div class="weekplanner">
+        <table>
+          <tr id="wp-headers"></tr>
+          <tr id="wp-morning">
+            <td class="wp-time">08:00</td>
+            <td><ul id="wp-00"></ul></td>
+            <td><ul id="wp-01"></ul></td>
+            <td><ul id="wp-02"></ul></td>
+          </tr>
+          <tr id="wp-noon">
+            <td class="wp-time">12:00</td>
+            <td><ul id="wp-10"></ul></td>
+            <td><ul id="wp-11"></ul></td>
+            <td><ul id="wp-12"></ul></td>
+          </tr>
+          <tr id="wp-afternoon">
+            <td class="wp-time">16:00</td>
+            <td><ul id="wp-20"></ul></td>
+            <td><ul id="wp-21"></ul></td>
+            <td><ul id="wp-22"></ul></td>
+          </tr>
+          <tr id="wp-evening">
+            <td class="wp-time">20:00</td>
+            <td><ul id="wp-30"></ul></td>
+            <td><ul id="wp-31"></ul></td>
+            <td><ul id="wp-32"></ul></td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </body>
+</html>

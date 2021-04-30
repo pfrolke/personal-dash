@@ -1,16 +1,11 @@
-function getParameterByName(variable) {
+function getSecret() {
   var query = window.location.search.substring(1);
-  var vars = query.split("&");
-  for (var i = 0; i < vars.length; i++) {
-    var pair = vars[i].split("=");
-    if (decodeURIComponent(pair[0]) == variable) {
-      return decodeURIComponent(pair[1]);
-    }
-  }
+  return query.split("=")[1];
 }
 
 window.addEventListener("load", function () {
   update();
+  updateWeekPlanner();
   setInterval(update, 120000);
 });
 
@@ -21,28 +16,26 @@ function update() {
   updateTodos();
 }
 
-function updateWeather() {
-  var appid = getParameterByName("appid");
+function getAPI(url, callback) {
   var oReq = new XMLHttpRequest();
   oReq.addEventListener("load", function () {
-    var weatherData = JSON.parse(this.responseText);
+    var data = JSON.parse(this.responseText);
+    callback(data);
+  });
+  oReq.open("GET", "/api" + url);
+  oReq.setRequestHeader("Authorization", getSecret());
+  oReq.send();
+}
+
+function updateWeather() {
+  getAPI("/weather", function (data) {
     var weatherTemp = document.getElementById("weather-temp");
     var weatherText = document.getElementById("weather-text");
     var weatherImg = document.getElementById("weather-img");
-    var temp = Math.round(weatherData.main.temp);
-    weatherTemp.innerHTML = temp;
-    weatherText.innerHTML = weatherData.weather[0].description;
-    weatherImg.src =
-      "https://openweathermap.org/img/wn/" +
-      weatherData.weather[0].icon +
-      ".png";
+    weatherTemp.innerHTML = data.temp;
+    weatherText.innerHTML = data.desc;
+    weatherImg.src = data.imgSrc;
   });
-  oReq.open(
-    "GET",
-    "https://api.openweathermap.org/data/2.5/weather?id=2757345&lang=nl&units=metric&appid=" +
-      appid
-  );
-  oReq.send();
 }
 
 function updateGreeting() {
@@ -132,28 +125,28 @@ function updateTimeDate() {
 }
 
 function updateTodos() {
-  var trellokey = getParameterByName("trellokey");
-  var trellotoken = getParameterByName("trellotoken");
-
-  var oReq = new XMLHttpRequest();
-  oReq.addEventListener("load", function () {
-    var res = JSON.parse(this.responseText);
+  getAPI("/todos", function (todos) {
     var todosList = document.getElementById("todos-list");
-    var todosListHTML = "";
+    todosList.innerHTML = "";
 
-    for (var i = 0; i < res.length; i++) {
-      todosListHTML += "<li>" + res[i].name + "</li>";
+    for (var i = 0; i < todos.length; i++) {
+      var listItem = document.createElement("LI");
+      listItem.innerHTML = todos[i];
+      todosList.appendChild(listItem);
     }
-
-    todosList.innerHTML = todosListHTML;
   });
+}
 
-  oReq.open(
-    "GET",
-    "https://api.trello.com/1/lists/5dc1b5133037ac752d6b4834/cards?key=" +
-      trellokey +
-      "&token=" +
-      trellotoken
-  );
-  oReq.send();
+function updateWeekPlanner() {
+  var date = new Date();
+  var wpHeads = document.getElementById("wp-headers");
+  var daysTxt = ["Zo", "Ma", "Di", "Wo", "Do", "Vr", "Za"];
+  wpHeads.innerHTML = "";
+  wpHeads.appendChild(document.createElement("TH"));
+
+  for (var i = 0; i < 3; i++) {
+    var th = document.createElement("TH");
+    th.innerHTML = daysTxt[(date.getDay() + i) % 7];
+    wpHeads.appendChild(th);
+  }
 }

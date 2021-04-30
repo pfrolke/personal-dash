@@ -42,6 +42,7 @@ body {
   text-align: center;
   top: 10px;
   left: 10px;
+  max-width: 30vw;
 }
 
 .weather > img,
@@ -66,7 +67,7 @@ body {
 .header {
   position: absolute;
   top: 10px;
-  left: 24vw;
+  left: 35vw;
   text-align: center;
 }
 
@@ -123,4 +124,37 @@ body {
   position: absolute;
   top: 50%;
   left: 20px;
+}
+
+th,
+td {
+  border-left: lightgrey 1px solid;
+  border-right: lightgrey 1px solid;
+}
+
+th {
+  border-bottom: black 1px solid;
+  background-color: lightgrey;
+}
+
+td {
+  padding: 5px;
+  vertical-align: top;
+}
+
+table {
+  border-bottom: lightgrey 1px solid;
+  border-collapse: collapse;
+}
+
+.wp-time {
+  font-size: 8px;
+}
+
+.weekplanner ul {
+  list-style: none;
+}
+
+.weekplanner li + li {
+  border-top: lightgrey 1px dashed;
 }
