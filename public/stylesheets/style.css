@@ -20,6 +20,10 @@ body {
   font-family: "Roboto Slab";
 }
 
+ul {
+  list-style: none;
+}
+
 .container {
   box-sizing: border-box;
   width: 123%;
@@ -105,19 +109,35 @@ body {
 }
 
 .todos ul {
-  list-style: none;
   text-align: left;
 }
 
 .todos li:before {
   content: "\25A1";
   margin-left: -20px;
-  margin-right: 10px;
+  margin-right: 5px;
 }
 
 .todos li {
   font-size: 24px;
   font-weight: 500;
+}
+
+#birthdays {
+  position: absolute;
+  top: 150px;
+  left: 40px;
+}
+
+#birthdays > li:before {
+  content: "";
+  display: inline-block;
+  height: 15px;
+  width: 15px;
+  margin-left: -20px;
+  margin-right: 5px;
+  background-image: url("/images/baseline_cake_black_24dp.png");
+  background-size: contain;
 }
 
 .weekplanner {
@@ -157,10 +177,6 @@ table {
   min-width: unset;
   font-size: 10px;
   font-weight: 400;
-}
-
-.weekplanner ul {
-  list-style: none;
 }
 
 .weekplanner li + li {

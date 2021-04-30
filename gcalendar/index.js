@@ -92,4 +92,27 @@ function getWeekPlanning(auth) {
   });
 }
 
+function getBirthdays(auth) {
+  const calendar = google.calendar({ version: "v3", auth });
+
+  const startDate = new Date();
+  startDate.setHours(0);
+  startDate.setMinutes(0);
+  startDate.setSeconds(0, 0);
+
+  const endDate = new Date(startDate);
+  endDate.setDate(startDate.getDate() + 1);
+
+  return calendar.events
+    .list({
+      calendarId: "8sko5ibdrcvtl7ha4979h6jm0s@group.calendar.google.com",
+      orderBy: "startTime",
+      singleEvents: true,
+      timeMin: startDate.toISOString(),
+      timeMax: endDate.toISOString(),
+    })
+    .then(({ data }) => data.items.map((event) => event.summary.substring(2)));
+}
+
 module.exports.getWeekPlanning = () => authorize(getWeekPlanning);
+module.exports.getBirthdays = () => authorize(getBirthdays);

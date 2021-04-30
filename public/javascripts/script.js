@@ -96,7 +96,10 @@ function updateTimeDate() {
   var timeText;
 
   if (minTextIndex == 0) {
-    timeText = timeText.charAt(0).toUpperCase() + timeText.slice(1) + " uur";
+    timeText =
+      hourText[hourTextIndex].charAt(0).toUpperCase() +
+      hourText[hourTextIndex].slice(1) +
+      " uur";
   } else {
     timeText = minText[minTextIndex] + " " + hourText[hourTextIndex];
   }
@@ -162,6 +165,19 @@ function updateWeekPlanner() {
           eventList.appendChild(listItem);
         }
       }
+    }
+  });
+}
+
+function updateBirthdays() {
+  getAPI("/birthdays", function (names) {
+    var bdayList = document.getElementById("birthdays");
+    bdayList.innerHTML = "";
+
+    for (var i = 0; i < names.length; i++) {
+      var listItem = document.createElement("LI");
+      listItem.innerHTML = names[i];
+      bdayList.appendChild(listItem);
     }
   });
 }

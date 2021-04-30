@@ -1,7 +1,7 @@
 var express = require("express");
 var router = express.Router();
 var axios = require("axios");
-var { getWeekPlanning } = require("../gcalendar");
+var { getWeekPlanning, getBirthdays } = require("../gcalendar");
 
 router.use(function (req, res, next) {
   if (req.get("Authorization") === process.env.SECRET) {
@@ -47,6 +47,12 @@ router.get("/todos", function (req, res, next) {
 router.get("/weekplanning", function (req, res, next) {
   getWeekPlanning().then((events) => {
     res.send(events);
+  });
+});
+
+router.get("/birthdays", function (req, res, next) {
+  getBirthdays().then((names) => {
+    res.send(names);
   });
 });
 
