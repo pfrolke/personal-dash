@@ -1,6 +1,7 @@
 window.addEventListener("load", function () {
   update();
   updateWeekPlanner();
+  updateBirthdays();
   setInterval(update, 120000);
 });
 
