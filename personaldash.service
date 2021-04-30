@@ -3,8 +3,7 @@ Description=Personal Dashboard Service
 
 [Service]
 ExecStart=/usr/local/bin/node /opt/personal-dash/bin/www
-# Required on some systems
-#WorkingDirectory=/opt/nodeserver
+WorkingDirectory=/opt/personal-dash
 Restart=always
 # Restart service after 10 seconds if node service crashes
 RestartSec=10
