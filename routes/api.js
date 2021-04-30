@@ -1,6 +1,7 @@
 var express = require("express");
 var router = express.Router();
 var axios = require("axios");
+var { getWeekPlanning } = require("../gcalendar");
 
 router.use(function (req, res, next) {
   if (req.get("Authorization") === process.env.SECRET) {
@@ -41,6 +42,12 @@ router.get("/todos", function (req, res, next) {
     .then(function ({ data }) {
       res.send(data.map((d) => d.name));
     });
+});
+
+router.get("/weekplanning", function (req, res, next) {
+  getWeekPlanning().then((events) => {
+    res.send(events);
+  });
 });
 
 module.exports = router;

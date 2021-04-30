@@ -135,20 +135,28 @@ td {
 th {
   border-bottom: black 1px solid;
   background-color: lightgrey;
+  height: 21px;
 }
 
 td {
   padding: 5px;
   vertical-align: top;
+  min-width: 60px;
+  font-size: 16px;
+  font-weight: 600;
 }
 
 table {
   border-bottom: lightgrey 1px solid;
   border-collapse: collapse;
+  height: 280px;
+  width: 600px;
 }
 
 .wp-time {
-  font-size: 8px;
+  min-width: unset;
+  font-size: 10px;
+  font-weight: 400;
 }
 
 .weekplanner ul {

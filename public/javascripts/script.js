@@ -1,13 +1,13 @@
-function getSecret() {
-  var query = window.location.search.substring(1);
-  return query.split("=")[1];
-}
-
 window.addEventListener("load", function () {
   update();
   updateWeekPlanner();
   setInterval(update, 120000);
 });
+
+function getSecret() {
+  var query = window.location.search;
+  return query.split("=")[1];
+}
 
 function update() {
   updateWeather();
@@ -19,8 +19,7 @@ function update() {
 function getAPI(url, callback) {
   var oReq = new XMLHttpRequest();
   oReq.addEventListener("load", function () {
-    var data = JSON.parse(this.responseText);
-    callback(data);
+    callback(JSON.parse(this.responseText));
   });
   oReq.open("GET", "/api" + url);
   oReq.setRequestHeader("Authorization", getSecret());
@@ -138,15 +137,31 @@ function updateTodos() {
 }
 
 function updateWeekPlanner() {
-  var date = new Date();
+  var wpDate = new Date();
   var wpHeads = document.getElementById("wp-headers");
   var daysTxt = ["Zo", "Ma", "Di", "Wo", "Do", "Vr", "Za"];
   wpHeads.innerHTML = "";
   wpHeads.appendChild(document.createElement("TH"));
 
-  for (var i = 0; i < 3; i++) {
+  for (var i = 0; i < 4; i++) {
     var th = document.createElement("TH");
-    th.innerHTML = daysTxt[(date.getDay() + i) % 7];
+    th.innerHTML = daysTxt[(wpDate.getDay() + i) % 7];
     wpHeads.appendChild(th);
   }
+
+  getAPI("/weekplanning", function (events) {
+    for (var iTimeslot = 0; iTimeslot < 4; iTimeslot++) {
+      for (var iDay = 0; iDay < 4; iDay++) {
+        var eventItems = events[iTimeslot][iDay];
+        var eventList = document.getElementById("wp-" + iTimeslot + iDay);
+        eventList.innerHTML = "";
+
+        for (var i = 0; i < eventItems.length; i++) {
+          var listItem = document.createElement("LI");
+          listItem.innerHTML = eventItems[i].summary;
+          eventList.appendChild(listItem);
+        }
+      }
+    }
+  });
 }
