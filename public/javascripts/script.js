@@ -2,7 +2,7 @@ window.addEventListener("load", function () {
   update();
   updateWeekPlanner();
   updateBirthdays();
-  setInterval(update, 120000);
+  setInterval(update, 60000);
 });
 
 function getSecret() {
@@ -50,7 +50,7 @@ function updateGreeting() {
     greet = "Truste";
   }
 
-  greeting.innerHTML = greet + " Paul";
+  greeting.innerHTML = greet;
 }
 
 function updateTimeDate() {
