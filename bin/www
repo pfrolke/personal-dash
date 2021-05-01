@@ -3,7 +3,7 @@
 /**
  * Module dependencies.
  */
-
+require("dotenv").config();
 var app = require("../app");
 var debug = require("debug")("personaldash:server");
 var http = require("http");
@@ -27,8 +27,8 @@ var server;
 if (process.env.NODE_ENV === "production") {
   server = https.createServer(
     {
-      key: fs.readFileSync(__dirname + "/private.key"),
-      cert: fs.readFileSync(__dirname + "/public.cert"),
+      key: fs.readFileSync(process.env.KEY_PATH),
+      cert: fs.readFileSync(process.env.CERT_PATH),
     },
     app
   );
