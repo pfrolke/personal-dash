@@ -63,7 +63,6 @@ function getWeekPlanning(auth) {
           .filter((event) => event.start.dateTime)
           .map((event) => {
             const eventDate = new Date(event.start.dateTime);
-            eventDate.setDate(eventDate.getDate() - startDate.getDate());
             const timeslot = Math.max(
               Math.floor(eventDate.getHours() / 4) - 2,
               0
@@ -71,7 +70,7 @@ function getWeekPlanning(auth) {
 
             return {
               summary: event.summary,
-              day: eventDate.getDate(),
+              day: eventDate.getDate() - startDate.getDate(),
               timeslot: timeslot,
             };
           })

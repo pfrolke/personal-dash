@@ -46,6 +46,7 @@ router.get("/todos", function (req, res, next) {
 
 router.get("/weekplanning", function (req, res, next) {
   getWeekPlanning().then((events) => {
+    console.table(events);
     res.send(events);
   });
 });
