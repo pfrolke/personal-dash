@@ -1,7 +1,4 @@
 window.addEventListener("load", function () {
-  var elem = document.documentElement;
-  elem.requestFullscreen();
-
   update();
   updateWeekPlanner();
   updateBirthdays();
