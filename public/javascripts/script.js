@@ -1,20 +1,20 @@
 window.addEventListener("load", function () {
-  update();
-  updateWeekPlanner();
-  updateBirthdays();
-  setInterval(update, 60000);
+  doOnLoop(updateWeather, 60);
+  doOnLoop(updateGreeting, 150);
+  doOnLoop(updateTimeDate, 150);
+  doOnLoop(updateTodos, 10);
+  doOnLoop(updateWeekPlanner, 1800);
+  doOnLoop(updateBirthdays, 3600);
 });
+
+function doOnLoop(callback, timeoutSec) {
+  callback();
+  setInterval(callback, timeoutSec * 1000);
+}
 
 function getSecret() {
   var query = window.location.search;
   return query.split("=")[1];
-}
-
-function update() {
-  updateWeather();
-  updateGreeting();
-  updateTimeDate();
-  updateTodos();
 }
 
 function getAPI(url, callback) {
