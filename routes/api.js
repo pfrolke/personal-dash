@@ -40,7 +40,27 @@ router.get("/todos", function (req, res, next) {
       },
     })
     .then(function ({ data }) {
-      res.send(data.map((d) => d.name));
+      res.send(
+        data.map((d) => {
+          return {
+            name: d.name,
+            id: d.id,
+          };
+        })
+      );
+    });
+});
+
+router.delete("/todos/:id", function (req, res, next) {
+  axios
+    .delete("https://api.trello.com/1/cards/" + req.params.id, {
+      params: {
+        key: process.env.TRELLO_KEY,
+        token: process.env.TRELLO_TOKEN,
+      },
+    })
+    .then(function () {
+      res.status(200).send();
     });
 });
 

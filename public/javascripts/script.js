@@ -128,16 +128,47 @@ function updateTimeDate() {
 }
 
 function updateTodos() {
-  getAPI("/todos", function (todos) {
-    var todosList = document.getElementById("todos-list");
-    todosList.innerHTML = "";
+  deleteTodos();
 
-    for (var i = 0; i < todos.length; i++) {
-      var listItem = document.createElement("LI");
-      listItem.innerHTML = todos[i];
-      todosList.appendChild(listItem);
-    }
-  });
+  setTimeout(function () {
+    getAPI("/todos", function (todos) {
+      var todosList = document.getElementById("todos-list");
+      todosList.innerHTML = "";
+
+      for (var i = 0; i < todos.length; i++) {
+        var listItem = document.createElement("LI");
+        listItem.id = todos[i].id;
+        listItem.onclick = function () {
+          addToDelete(this.id);
+        };
+        listItem.innerHTML = todos[i].name;
+        todosList.appendChild(listItem);
+      }
+    });
+  }, 100);
+}
+
+function addToDelete(id) {
+  var listItem = document.getElementById(id);
+  if (listItem.className) {
+    listItem.className = "";
+  } else {
+    listItem.className = "to-delete";
+  }
+}
+
+function deleteTodos() {
+  var toDelete = document.getElementsByClassName("to-delete");
+  for (var i = 0; i < toDelete.length; i++) {
+    var elem = toDelete[i];
+    var oReq = new XMLHttpRequest();
+    oReq.addEventListener("load", function () {
+      elem.remove();
+    });
+    oReq.open("DELETE", "/api/todos/" + elem.id);
+    oReq.setRequestHeader("Authorization", getSecret());
+    oReq.send();
+  }
 }
 
 function updateWeekPlanner() {

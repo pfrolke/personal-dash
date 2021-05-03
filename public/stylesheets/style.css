@@ -112,15 +112,24 @@ ul {
   text-align: left;
 }
 
+.todos li {
+  font-size: 24px;
+  font-weight: 500;
+}
+
+.todos li.to-delete {
+  text-decoration: line-through;
+}
+
 .todos li:before {
-  content: "\25A1";
+  display: inline-block;
+  content: "\2610";
   margin-left: -20px;
   margin-right: 5px;
 }
 
-.todos li {
-  font-size: 24px;
-  font-weight: 500;
+.todos li.to-delete:before {
+  content: "\2611";
 }
 
 #birthdays {
