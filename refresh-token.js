@@ -1,6 +1,7 @@
 const fs = require("fs");
 const readline = require("readline");
 const { google } = require("googleapis");
+require("dotenv").config();
 
 // If modifying these scopes, delete token.json.
 const SCOPES = ["https://www.googleapis.com/auth/calendar.readonly"];
@@ -17,9 +18,9 @@ const TOKEN_PATH = "token.json";
  */
 function authorize() {
   const oAuth2Client = new google.auth.OAuth2(
-    "298123554542-vdl9oilddef9pp5eens2tg2ui84pk77c.apps.googleusercontent.com",
-    "QHJhIB7WdZEk0dx-aMctpCCz",
-    "urn:ietf:wg:oauth:2.0:oob"
+    process.env.OAUTH2_ID,
+    process.env.OAUTH2_SECRET,
+    process.env.OAUTH2_REDIRECT
   );
 
   // Check if we have previously stored a token.
