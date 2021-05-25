@@ -177,6 +177,7 @@ td {
   min-width: 60px;
   font-size: 16px;
   font-weight: 600;
+  overflow: hidden;
 }
 
 table {
