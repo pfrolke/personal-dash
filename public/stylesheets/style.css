@@ -175,7 +175,7 @@ td {
   padding: 5px;
   vertical-align: top;
   min-width: 60px;
-  max-width: 120px;
+  max-width: 150px;
   font-size: 16px;
   font-weight: 600;
   overflow: hidden;
@@ -185,7 +185,7 @@ table {
   border-bottom: lightgrey 1px solid;
   border-collapse: collapse;
   height: 280px;
-  width: 600px;
+  width: 700px;
   background-color: white;
 }
 
