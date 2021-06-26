@@ -193,7 +193,9 @@ function updateWeekPlanner() {
 
         for (var i = 0; i < eventItems.length; i++) {
           var listItem = document.createElement("LI");
-          listItem.innerHTML = eventItems[i].summary;
+          var listSpanItem = document.createElement("LI");
+          listSpanItem.innerHTML = eventItems[i].summary;
+          listItem.appendChild(listSpanItem);
           eventList.appendChild(listItem);
         }
       }

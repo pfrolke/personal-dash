@@ -198,3 +198,13 @@ table {
 .weekplanner li + li {
   border-top: lightgrey 1px dashed;
 }
+
+.weekplanner ul {
+  list-style-type: circle;
+  list-style-position: inside;
+}
+
+.weekplanner li span {
+  position: relative;
+  left: -10px;
+}
