@@ -175,6 +175,7 @@ td {
   padding: 5px;
   vertical-align: top;
   min-width: 60px;
+  max-width: 120px;
   font-size: 16px;
   font-weight: 600;
   overflow: hidden;
