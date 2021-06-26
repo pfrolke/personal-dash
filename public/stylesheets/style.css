@@ -203,8 +203,3 @@ table {
   list-style-type: circle;
   list-style-position: inside;
 }
-
-.weekplanner li span {
-  position: relative;
-  left: -10px;
-}
