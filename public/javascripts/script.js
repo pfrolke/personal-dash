@@ -97,6 +97,11 @@ function updateTimeDate() {
   var timeText;
 
   if (minTextIndex == 0) {
+    if (date.getMinutes() > 50) {
+      hourTextIndex += 1
+      hourTextIndex = hourTextIndex % 12;
+    }
+
     timeText =
       hourText[hourTextIndex].charAt(0).toUpperCase() +
       hourText[hourTextIndex].slice(1) +
