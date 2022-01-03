@@ -1,6 +1,5 @@
 window.addEventListener("load", function () {
   doOnLoop(updateWeather, 60);
-  doOnLoop(updateGreeting, 150);
   doOnLoop(updateTimeDate, 150);
   doOnLoop(updateTodos, 10);
   doOnLoop(updateWeekPlanner, 1800);
@@ -38,25 +37,26 @@ function updateWeather() {
   });
 }
 
-function updateGreeting() {
-  var greeting = document.getElementById("greeting");
-  var date = new Date();
-
-  var greet = "Mogguh";
-  if (date.getHours() > 12) {
-    greet = "Hallo";
-  }
-  if (date.getHours() > 22 || date.getHours() < 5) {
-    greet = "Truste";
-  }
-
-  greeting.innerHTML = greet;
-}
-
 function updateTimeDate() {
-  var timeHTML = document.getElementById("time-text");
-  var dateHTML = document.getElementById("date-text");
   var date = new Date();
+
+  /** Day of week */
+  var dayHTML = document.getElementById("day-text");
+  var dayOfWeekIndex = date.getDay();
+  var dayOfWeekText = [
+    "Zondag",
+    "Maandag",
+    "Dinsdag",
+    "Woensdag",
+    "Donderdag",
+    "Vrijdag",
+    "Zaterdag",
+  ][dayOfWeekIndex];
+
+  dayHTML.innerHTML = dayOfWeekText;
+
+  /** Time */
+  var timeHTML = document.getElementById("time-text");
 
   var minTextIndex = Math.round((date.getMinutes() / 60) * 12) % 12;
   var minText = [
@@ -98,7 +98,7 @@ function updateTimeDate() {
 
   if (minTextIndex == 0) {
     if (date.getMinutes() > 50) {
-      hourTextIndex += 1
+      hourTextIndex += 1;
       hourTextIndex = hourTextIndex % 12;
     }
 
@@ -109,7 +109,10 @@ function updateTimeDate() {
   } else {
     timeText = minText[minTextIndex] + " " + hourText[hourTextIndex];
   }
+  timeHTML.innerHTML = timeText;
 
+  /** Date */
+  var dateHTML = document.getElementById("date-text");
   var monthIndex = date.getMonth();
   var monthText = [
     "Jan",
@@ -127,8 +130,6 @@ function updateTimeDate() {
   ][monthIndex];
 
   var dayText = date.getDate();
-
-  timeHTML.innerHTML = timeText;
   dateHTML.innerHTML = dayText + " " + monthText;
 }
 
