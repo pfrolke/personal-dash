@@ -1,6 +1,5 @@
 window.addEventListener("load", function () {
   doOnLoop(updateWeather, 60);
-  doOnLoop(updateGreeting, 150);
   doOnLoop(updateTimeDate, 150);
   doOnLoop(updateTodos, 10);
   doOnLoop(updateWeekPlanner, 1800);
@@ -36,21 +35,6 @@ function updateWeather() {
     weatherText.innerHTML = data.desc;
     weatherImg.src = data.imgSrc;
   });
-}
-
-function updateGreeting() {
-  var greeting = document.getElementById("greeting");
-  var date = new Date();
-
-  var greet = "Mogguh";
-  if (date.getHours() > 12) {
-    greet = "Hallo";
-  }
-  if (date.getHours() > 22 || date.getHours() < 5) {
-    greet = "Truste";
-  }
-
-  greeting.innerHTML = greet;
 }
 
 function updateTimeDate() {
@@ -98,7 +82,7 @@ function updateTimeDate() {
 
   if (minTextIndex == 0) {
     if (date.getMinutes() > 50) {
-      hourTextIndex += 1
+      hourTextIndex += 1;
       hourTextIndex = hourTextIndex % 12;
     }
 
