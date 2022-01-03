@@ -28,7 +28,7 @@ ul {
   box-sizing: border-box;
   width: 123%;
   height: 81%;
-  -webkit-transform: rotate(90deg) translateX(-70px) translateY(-80px);
+  -webkit-transform: rotate(-90deg) translateX(-70px) translateY(-80px);
 }
 
 .text {
