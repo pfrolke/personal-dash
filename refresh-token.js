@@ -17,14 +17,6 @@ function authorize() {
     process.env.OAUTH2_REDIRECT
   );
 
-  // Check if we have previously stored a token.
-  fs.readFile(TOKEN_PATH, (err, token) => {
-    if (err) return getAccessToken(oAuth2Client);
-    oAuth2Client.setCredentials(JSON.parse(token));
-  });
-}
-
-function getAccessToken(oAuth2Client) {
   const authUrl = oAuth2Client.generateAuthUrl({
     access_type: "offline",
     scope: SCOPES,
@@ -48,4 +40,4 @@ function getAccessToken(oAuth2Client) {
   });
 }
 
-authorize();
+fs.unlink(TOKEN_PATH, authorize);
